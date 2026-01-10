@@ -360,50 +360,87 @@ h6,
   }
 }
 
-/* -----------------------------------------------------------
-   11. CONTACT SECTION STYLES
-   ----------------------------------------------------------- */
-.glass-input {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid var(--glass-border) !important;
-  backdrop-filter: blur(10px);
-  color: white !important;
-  border-radius: 12px !important;
+/* Container Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  align-items: start;
 }
 
-.glass-input:focus {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-color: var(--accent-color) !important;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2) !important;
+/* Contact Cards */
+.contact-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  padding: 30px 20px;
+  transition: 0.3s;
 }
 
-.form-floating > label {
-  color: rgba(255, 255, 255, 0.6) !important;
+.contact-card:hover {
+  background: rgba(0, 210, 255, 0.1);
+  transform: translateY(-5px);
 }
 
-.contact-icon-box {
-  width: 50px;
-  height: 50px;
-  background: var(--glass-bg);
-  border-radius: 12px;
+.contact-card .icon-circle {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
   color: var(--accent-color);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.glass-btn {
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form .glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 12px 15px;
+  color: #fff;
+  outline: none;
+  transition: 0.3s;
+}
+
+.contact-form .glass-input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Textarea */
+.contact-form textarea {
+  min-height: 150px;
+  resize: none;
+}
+
+/* Button */
+.contact-form .glass-btn {
   background: var(--accent-color);
   border: none;
   color: #000;
   font-weight: 600;
   border-radius: 12px;
+  padding: 12px 20px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
-.glass-btn:hover {
+.contact-form .glass-btn:hover {
+  background: white;
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
-  background: white;
 }

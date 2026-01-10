@@ -268,112 +268,51 @@
     </section>
     <section id="contact" class="py-100">
       <div class="container">
-        <h2
-          class="section-title text-center mb-5 animate__animated animate__fadeIn"
-        >
-          Get In Touch
-        </h2>
-        <div class="row g-4 justify-content-center">
-          <div class="col-lg-4">
-            <div
-              class="glass-card p-4 h-100 animate__animated animate__fadeInLeft"
-            >
-              <div class="contact-info-item d-flex align-items-center mb-4">
-                <div class="contact-icon me-3">
-                  <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                  <p class="mb-0 text-muted">Email Me</p>
-                  <h6 class="mb-0">moamen@example.com</h6>
-                </div>
-              </div>
+        <!-- Section Title -->
+        <h2 class="section-title text-center mb-5">Get In Touch</h2>
 
-              <div class="contact-info-item d-flex align-items-center mb-4">
-                <div class="contact-icon me-3">
-                  <i class="fas fa-location-dot"></i>
-                </div>
-                <div>
-                  <p class="mb-0 text-muted">Location</p>
-                  <h6 class="mb-0">Cairo, Egypt</h6>
-                </div>
-              </div>
-
-              <div class="contact-info-item d-flex align-items-center">
-                <div class="contact-icon me-3">
-                  <i class="fas fa-phone"></i>
-                </div>
-                <div>
-                  <p class="mb-0 text-muted">Phone</p>
-                  <h6 class="mb-0">+20 123 456 789</h6>
-                </div>
-              </div>
+        <!-- Contact Grid: left info cards + right contact form -->
+        <div class="contact-grid">
+          <!-- Contact Info Card: Email -->
+          <div class="contact-card animate__animated animate__fadeInLeft">
+            <div class="icon-circle">
+              <i class="fas fa-envelope"></i>
             </div>
+            <h5>Email Me</h5>
+            <p>moamen@example.com</p>
           </div>
 
-          <div class="col-lg-7">
-            <div class="glass-card p-4 animate__animated animate__fadeInRight">
-              <form id="contact-form">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input
-                        type="text"
-                        class="form-control glass-input"
-                        id="name"
-                        placeholder="Your Name"
-                        required
-                      />
-                      <label for="name" class="text-white">Your Name</label>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-floating mb-3">
-                      <input
-                        type="email"
-                        class="form-control glass-input"
-                        id="email"
-                        placeholder="name@example.com"
-                        required
-                      />
-                      <label for="email" class="text-white"
-                        >Email Address</label
-                      >
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <input
-                        type="text"
-                        class="form-control glass-input"
-                        id="subject"
-                        placeholder="Subject"
-                      />
-                      <label for="subject" class="text-white">Subject</label>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-floating mb-3">
-                      <textarea
-                        class="form-control glass-input"
-                        placeholder="Leave a message here"
-                        id="message"
-                        style="height: 150px"
-                        required
-                      ></textarea>
-                      <label for="message" class="text-white">Message</label>
-                    </div>
-                  </div>
-                  <div class="col-12 text-end">
-                    <button
-                      type="submit"
-                      class="btn btn-primary glass-btn px-5 py-2"
-                    >
-                      Send Message <i class="fas fa-paper-plane ms-2"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
+          <!-- Contact Info Card: Location -->
+          <div class="contact-card animate__animated animate__fadeInLeft">
+            <div class="icon-circle">
+              <i class="fas fa-location-dot"></i>
             </div>
+            <h5>Location</h5>
+            <p>Cairo, Egypt</p>
+          </div>
+
+          <!-- Contact Info Card: Phone -->
+          <div class="contact-card animate__animated animate__fadeInLeft">
+            <div class="icon-circle">
+              <i class="fas fa-phone"></i>
+            </div>
+            <h5>Phone</h5>
+            <p>+20 123 456 789</p>
+          </div>
+          <!-- Contact Form -->
+          <div class="contact-form animate__animated animate__fadeInRight">
+            <!-- Name Input -->
+            <input type="text" class="glass-input" placeholder="Your Name" />
+            <!-- Email Input -->
+            <input type="email" class="glass-input" placeholder="Your Email" />
+            <!-- Subject Input -->
+            <input type="text" class="glass-input" placeholder="Subject" />
+            <!-- Message Textarea -->
+            <textarea class="glass-input" placeholder="Your Message"></textarea>
+            <!-- Submit Button -->
+            <button class="glass-btn">
+              Send Message <i class="fas fa-paper-plane ms-2"></i>
+            </button>
           </div>
         </div>
       </div>

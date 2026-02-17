@@ -1,333 +1,1231 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Professional Portfolio with Glassmorphism Design"
-    />
-    <title>Moamen Abouhaty</title>
+    <title>Moamen E. Abouhaty</title>
 
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ========================================
+             1. CSS VARIABLES (THEME SYSTEM)
+           ========================================
+        */
+      :root {
+        /* Light Theme Palette */
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --secondary: #64748b;
+        --bg-body: #f1f5f9;
+        --bg-navbar: rgba(255, 255, 255, 0.85);
+        --bg-card: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --glass: rgba(255, 255, 255, 0.7);
+        --border: rgba(0, 0, 0, 0.08);
+        --shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        /* Theme Toggle Button Variables (Light Mode) */
+        --toggle-bg: #2d3436; /* Dark background for button */
+        --toggle-icon: #fbc531; /* Yellow moon icon */
+        --toggle-glow: rgba(0, 0, 0, 0.2);
+      }
+
+      [data-theme="dark"] {
+        /* Dark Theme Palette */
+        --primary: #3b82f6;
+        --primary-hover: #60a5fa;
+        --bg-body: #020617;
+        --bg-navbar: rgba(15, 23, 42, 0.85);
+        --bg-card: #1e293b;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --glass: rgba(30, 41, 59, 0.7);
+        --border: rgba(255, 255, 255, 0.08);
+        --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+
+        /* Theme Toggle Button Variables (Dark Mode) */
+        --toggle-bg: #fbc531; /* Bright yellow background */
+        --toggle-icon: #2d3436; /* Dark sun icon */
+        --toggle-glow: rgba(251, 197, 49, 0.5);
+      }
+
+      /* ========================================
+             2. GLOBAL RESET & BASE STYLES
+           ========================================
+        */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        line-height: 1.7;
+        overflow-x: hidden;
+        transition:
+          background-color 0.5s ease,
+          color 0.5s ease;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      section {
+        padding: 120px 10%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-body);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 5px;
+      }
+
+      /* ========================================
+             3. TYPOGRAPHY & TITLES
+           ========================================
+        */
+      .section-header {
+        text-align: center;
+        margin-bottom: 70px;
+      }
+
+      .section-header h2 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 3rem;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        margin-bottom: 10px;
+      }
+
+      .section-header .underline {
+        width: 80px;
+        height: 5px;
+        background: var(--primary);
+        margin: 0 auto;
+        border-radius: 10px;
+      }
+
+      /* ========================================
+             4. NAVIGATION BAR & THEME TOGGLE
+           ========================================
+        */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 85px;
+        background: var(--bg-navbar);
+        backdrop-filter: blur(15px);
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        z-index: 9999;
+        border-bottom: 1px solid var(--border);
+        transition: var(--transition);
+      }
+
+      .logo {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--primary);
+        cursor: pointer;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-weight: 500;
+        font-size: 1rem;
+        position: relative;
+        padding: 5px 0;
+        transition: var(--transition);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      /* Small Rectangular Theme Button (Right Side) */
+      .theme-btn {
+        width: 100px;
+        height: 34px;
+        border-radius: 0 0 0 10px;
+
+        position: fixed;
+        top: 85px;
+        right: 0;
+        z-index: 10000;
+
+        border: 1px solid var(--border);
+        border-right: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 0.75rem;
+
+        background-color: var(--bg-navbar);
+        backdrop-filter: blur(10px);
+        color: var(--text-main);
+        box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.1);
+
+        transition: all 0.3s ease;
+      }
+
+      .theme-btn i {
+        font-size: 0.8rem;
+        color: var(--primary);
+      }
+
+      .theme-btn:hover {
+        width: 110px;
+        background-color: var(--primary);
+        color: #fff;
+      }
+
+      .theme-btn:hover i {
+        color: #fff;
+      }
+
+      /* ========================================
+             5. HOME SECTION (HERO)
+           ========================================
+        */
+      .hero-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .profile-container {
+        position: relative;
+        width: 350px;
+        height: 350px;
+      }
+
+      .profile-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        object-fit: cover;
+        border: 8px solid var(--primary);
+        animation: blob 8s infinite alternate;
+        z-index: 2;
+        position: relative;
+      }
+
+      @keyframes blob {
+        0% {
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        100% {
+          border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+        }
+      }
+
+      .hero-text h1 {
+        font-size: 4rem;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+        line-height: 1.1;
+      }
+
+      .hero-text .typewrite {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+
+      .hero-text p {
+        margin: 25px 0;
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 500px;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 20px;
+      }
+
+      .main-btn {
+        padding: 15px 35px;
+        background: var(--primary);
+        color: #fff;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 2px solid var(--primary);
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .main-btn:hover {
+        background: transparent;
+        color: var(--primary);
+        transform: translateY(-5px);
+      }
+
+      /* ========================================
+             6. PROJECTS SECTION (12 CARDS)
+           ========================================
+        */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: var(--bg-card);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+      }
+
+      .project-card:hover {
+        transform: translateY(-15px);
+      }
+
+      .p-img-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 220px;
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s ease;
+      }
+
+      .project-card:hover img {
+        transform: scale(1.1);
+      }
+
+      .p-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(37, 99, 235, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: 0.4s;
+      }
+
+      .project-card:hover .p-overlay {
+        opacity: 1;
+      }
+
+      .p-overlay a {
+        background: white;
+        color: var(--primary);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        transform: translateY(20px);
+        transition: 0.4s;
+      }
+
+      .project-card:hover .p-overlay a {
+        transform: translateY(0);
+      }
+
+      .p-content {
+        padding: 25px;
+      }
+      .p-content h3 {
+        margin-bottom: 10px;
+        font-size: 1.4rem;
+      }
+      .p-content p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+
+      /* ========================================
+             7. SKILLS SECTION
+           ========================================
+        */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+        text-align: center;
+      }
+
+      .skill-item {
+        background: var(--bg-card);
+        padding: 30px 20px;
+        border-radius: 20px;
+        transition: var(--transition);
+        border-bottom: 4px solid transparent;
+      }
+
+      .skill-item:hover {
+        background: var(--primary);
+        transform: scale(1.05);
+        border-bottom: 4px solid var(--text-main);
+      }
+
+      .skill-item i {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .skill-item span {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .skill-item:hover span,
+      .skill-item:hover i {
+        color: #c7bcbc !important;
+      }
+
+      /* ========================================
+             8. CERTIFICATES SECTION
+           ========================================
+        */
+      .cert-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 25px;
+      }
+
+      .cert-box {
+        background: var(--bg-card);
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+      }
+
+      .cert-box .img-holder {
+        width: 100%;
+        height: 250px;
+        background: #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .cert-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .cert-box h4 {
+        margin-bottom: 5px;
+      }
+      .cert-box p {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      /* ========================================
+             9. CONTACT SECTION
+           ========================================
+        */
+      .contact-wrapper {
+        display: flex;
+        gap: 50px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .contact-info-card {
+        background: var(--bg-card);
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        flex: 1;
+        min-width: 300px;
+        box-shadow: var(--shadow);
+      }
+
+      .contact-info-card i {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .contact-info-card h3 {
+        margin-bottom: 10px;
+      }
+
+      /* ========================================
+             10. FOOTER
+           ========================================
+        */
+      footer {
+        background: #020617;
+        padding: 80px 10% 30px;
+        color: #fff;
+        text-align: center;
+      }
+
+      .footer-socials {
+        margin-bottom: 40px;
+      }
+      .footer-socials a {
+        font-size: 1.8rem;
+        margin: 0 15px;
+        transition: var(--transition);
+      }
+      .footer-socials a:hover {
+        color: var(--primary);
+        transform: translateY(-5px);
+      }
+
+      .copyright {
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+
+      .burger {
+        display: none;
+        cursor: pointer;
+        z-index: 10001;
+      }
+
+      .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-main);
+        margin: 5px;
+        transition: all 0.3s ease;
+      }
+
+      @media screen and (max-width: 768px) {
+        .burger {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          right: -100%;
+          top: 85px;
+          height: calc(100vh - 85px);
+          background-color: var(--bg-navbar);
+          backdrop-filter: blur(20px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 70%;
+          padding-top: 50px;
+          transition: right 0.5s ease-in-out;
+          box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links.nav-active {
+          right: 0;
+        }
+
+        .nav-links li {
+          margin: 20px 0;
+          opacity: 0;
+        }
+      }
+
+      .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      .toggle .line2 {
+        opacity: 0;
+      }
+      .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      @keyframes navLinkFade {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
+
+      body,
+      html {
+        overflow-x: hidden;
+      }
+
+      /* Navbar & Burger Menu */
+      @media screen and (max-width: 768px) {
+        nav {
+          height: 65px;
+          padding: 0 15px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 80px; 
+          right: -100%;
+          width: 65%; 
+          height: auto; 
+          max-height: 70vh; 
+          background: var(--bg-navbar);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          align-items: center;
+          gap: 15px; 
+          padding: 30px 0; 
+          
+          border-radius: 20px 0 0 20px; 
+          box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.2);
+          
+          transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+          z-index: 9999;
+          border: 1px solid var(--border);
+        }
+
+        .nav-links.nav-active {
+          right: 0;
+        }
+
+       .nav-links li {
+          opacity: 1 !important; 
+          width: 100%;
+          text-align: center;
+          margin: 10px 0;
+          transform: none !important; 
+        }
+
+        .nav-links a {
+          color: var(--text-main); 
+          font-size: 1.1rem;
+          font-weight: 500;
+          display: block;
+          padding: 10px 0;
+        }
+
+        .burger {
+          display: block;
+          cursor: pointer;
+        }
+      }
+
+      /* Hero Section */
+      @media screen and (max-width: 768px) {
+        .hero-flex {
+          flex-direction: column-reverse;
+          align-items: center;
+          text-align: center;
+          gap: 30px;
+        }
+
+        .hero-image {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .profile-container {
+          width: 240px;
+          height: 240px;
+        }
+      }
+
+      /* Projects / Skills / Certificates */
+      @media screen and (max-width: 768px) {
+        .projects-grid,
+        .skills-grid,
+        .cert-container {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        section {
+          padding: 70px 5%;
+        }
+      }
+
+      /* Extra Small Phones ≤360px */
+      @media screen and (max-width: 360px) {
+        html {
+          font-size: 13px;
+        }
+
+        .hero-text h1 {
+          font-size: 2rem;
+        }
+        .profile-container {
+          width: 180px;
+          height: 180px;
+        }
+
+        .nav-links {
+          width: 80%;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-navbar">
-      <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-          <img
-            src="https://img.icons8.com/?size=200&id=t4YbEbA834uH&format=png"
-            alt="Logo"
-            class="nav-logo me-2"
-          />
-          <span class="fw-bold tracking-widest">MyPortfolio</span>
+  <body data-theme="light">
+    <nav>
+      <div class="logo">
+        <a href="#home" style="text-decoration: none; color: inherit">
+          My<span>Portfolio</span>
         </a>
-        <button
-          class="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" href="#hero">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#skills">Tech Stack</a>
-            </li>
+      </div>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
-            </li>
-          </ul>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certs">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="burger" id="burger-menu">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+
+        <div class="theme-switch-wrapper">
+          <button id="theme-toggle" class="theme-btn">
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
         </div>
       </div>
     </nav>
 
-    <div class="bg-blobs">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
-
-    <section id="hero" class="hero-section d-flex align-items-center">
+    <section id="home">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 text-center">
-            <div
-              class="glass-card main-profile-card animate__animated animate__zoomIn"
-            >
-              <div class="profile-frame mx-auto mb-4">
-                <img
-                  src="assets/profile.jpg"
-                  alt="Moamen Abouhaty"
-                  class="img-fluid profile-pic"
-                />
-              </div>
-
-              <h1 class="user-name display-3 fw-bolder mb-3">
-                Moamen Abouhaty
-              </h1>
-              <p class="typing-text lead mb-4">
-                Building the future with modern tech stacks
-              </p>
-
-              <div class="social-links d-flex justify-content-center">
-                <a
-                  href="https://github.com/MomenElsayedDev"
-                  target="_blank"
-                  class="social-icon"
-                  title="GitHub"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/momen-elsayed-dev/"
-                  target="_blank"
-                  class="social-icon"
-                  title="LinkedIn"
-                >
-                  <i class="fab fa-linkedin"></i>
-                </a>
-                <a
-                  href="mailto:hybrid0b1@gmail.com"
-                  class="social-icon"
-                  title="Email Me"
-                >
-                  <i class="fas fa-envelope"></i>
-                </a>
-              </div>
+        <div class="hero-flex">
+          <div class="hero-text" data-aos="fade-right">
+            <h5>HELLO WORLD, I'M</h5>
+            <h1>Moamen</h1>
+            <div class="type-wrap">
+              I am a
+              <span
+                class="typewrite"
+                data-period="2000"
+                data-type='[ "Junior Software Engineer"]'
+              ></span>
+            </div>
+            <p>
+              I build high-performance, scalable web applications with a focus
+              on user experience and clean architecture.
+            </p>
+            <div class="btn-group">
+              <a href="assets/resume/Moamen-E-Abouhaty.pdf" download class="main-btn">
+                <i class="fas fa-file-download"></i> Download CV
+              </a>
+              <a
+                href="#contact"
+                class="main-btn"
+                style="background: transparent; color: var(--primary)"
+              >
+                Let's Talk
+              </a>
+            </div>
+          </div>
+          <div class="hero-image" data-aos="zoom-in">
+            <div class="profile-container">
+              <img
+                src="assets/hero.png"
+                alt="Professional Photo"
+                class="profile-img"
+              />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="py-100">
+    <section id="projects">
       <div class="container">
-        <div class="glass-card p-5 animate__animated animate__fadeInUp">
-          <h2 class="section-title text-center mb-5">About Me</h2>
-          <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-              <p class="fs-5">
-                I am a passionate programmer with a strong foundation in C++. I
-                specialize in backend development and enjoy building robust,
-                scalable, and efficient server-side applications.
-              </p>
-              <p>
-                I am also a keen problem solver, dedicated to finding elegant
-                solutions to complex challenges. My focus is on clean code,
-                performance, and delivering reliable backend solutions.
-              </p>
-            </div>
-            <div class="col-md-6">
-              <div class="stats-grid">
-                <div class="stat-box">
-                  <h3>2+</h3>
-                  <p>Projects Done</p>
+        <div class="section-header" data-aos="fade-up">
+          <h2>Featured <span>Work</span></h2>
+          <div class="underline"></div>
+        </div>
+        <div class="projects-grid">
+          <script>
+            const projects = [
+              {
+                title: "Prisma",
+                desc:"TO-DO",
+                image: "assets/projects/p1.png",
+                link: "https://github.com/MomenElsayedDev/prisma",
+              },
+              {
+                title: "GraviShift",
+                desc:"Game",
+                image: "assets/projects/p2.png",
+                link: "https://github.com/MomenElsayedDev/GraviShift",
+              },
+              {
+                title: "Synapse-A",
+                desc:"Synapse-A",
+                image: "assets/projects/p3.png",
+                link: "https://github.com/MomenElsayedDev/Synapse-AI",
+              },
+              {
+                title: "CYBERGUARD",
+                desc:"CYBERGUARD",
+                image: "assets/projects/p4.png",
+                link: "https://github.com/MomenElsayedDev/CYBERGUARD",
+              },
+              {
+                title: "ZENITH_SEC",
+                desc:"ZENITH_SEC",
+                image: "assets/projects/p5.png",
+                link: "https://github.com/MomenElsayedDev/ZENITH_SEC",
+              },
+              {
+                title: "AuraScan_Elite",
+                desc:"AuraScan_Elite",
+                image: "assets/projects/p6.png",
+                link: "https://github.com/MomenElsayedDev/AuraScan_Elite",
+              },
+              {
+                title: "Aura-City",
+                desc:"Game",
+                image: "assets/projects/p7.png",
+                link: "https://github.com/MomenElsayedDev/Aura-City",
+              },
+              {
+                title: "Code_For_Kids_JS",
+                desc:"Code_For_Kids_JS",
+                image: "assets/projects/p8.png",
+                link: "https://github.com/MomenElsayedDev/Code_For_Kids_JS",
+              },
+              {
+                title: "Focus-For-Good-Pro",
+                desc:"Focus-For-Good-Pro",
+                image: "assets/projects/p9.png",
+                link: "https://github.com/MomenElsayedDev/Focus-For-Good-Pro",
+              },
+              {
+                title: "comingsoon",
+                desc:"comingsoon",
+                image: "assets/projects/comingsoon.png",
+                link: "https://your-site-link.com",
+              },
+            ];
+
+            projects.forEach((proj, index) => {
+              document.write(`
+            <div class="project-card" data-aos="fade-up" data-aos-delay="${index * 100}">
+                <div class="p-img-wrapper">
+                    <img src="${proj.image}" alt="${proj.title}">
+                    <div class="p-overlay">
+                        <a href="${proj.link}" target="_blank" title="Visit Website">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="stat-box">
-                  <h3>15+</h3>
-                  <p>Tech Tools</p>
+                <div class="p-content">
+                    <h3>${proj.title}</h3>
+                    <p>${proj.desc}</p>
                 </div>
-              </div>
             </div>
-          </div>
+          `);
+            });
+          </script>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="py-100">
+    <section id="skills" style="background: var(--glass)">
       <div class="container">
-        <h2 class="section-title text-center mb-5">Technical Arsenal</h2>
-        <div class="row g-4">
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-cplusplus-plain colored"></i>
-              <h5>C++</h5>
-            </div>
+        <div class="section-header" data-aos="fade-up">
+          <h2>Technical <span>Skills</span></h2>
+          <div class="underline"></div>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-item" data-aos="flip-left">
+            <i class="devicon-javascript-plain colored"></i
+            ><span>JavaScript</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-python-plain"></i>
-
-              <h5>Python</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
+            <i class="devicon-typescript-plain colored"></i>
+            <span>TypeScript</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-javascript-plain colored"></i>
-              <h5>JavaScript</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="50">
+            <i class="devicon-python-plain colored"></i><span>Python</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-typescript-plain colored"></i>
-              <h5>TypeScript</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="100">
+            <i class="devicon-cplusplus-plain colored"></i><span>C++</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-nodejs-plain colored"></i>
-              <h5>Node.js</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="150">
+            <i class="devicon-html5-plain colored"></i><span>HTML5</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-go-original-wordmark colored"></i>
-              <h5>Go Language</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="200">
+            <i class="devicon-css3-plain colored"></i><span>CSS3</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-azuresqldatabase-plain colored"></i>
-              <h5>SQL</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="250">
+            <i class="devicon-nodejs-plain colored"></i><span>Node.js</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-express-original"></i>
-
-              <h5>Express.js</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="300">
+            <i class="devicon-express-original colored"></i
+            ><span>Express.js</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-mongodb-plain colored"></i>
-              <h5>MongoDB</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="350">
+            <i class="devicon-mongodb-plain colored"></i><span>MongoDB</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-postgresql-plain colored"></i>
-              <h5>PostgreSQL</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
+            <i class="devicon-postgresql-plain colored"></i
+            ><span>PostgreSQL</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-postman-plain colored"></i>
-              <h5>Postman</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
+            <i class="devicon-postman-plain colored"></i>
+            <span>PostMan</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-css3-plain-wordmark"></i>
-
-              <h5>CSS3</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
+            <i class="devicon-vscode-plain-wordmark"></i>
+            <span>Vscode</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-html5-plain-wordmark"></i>
-
-              <h5>HTML5</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
+            <i class="devicon-git-plain-wordmark colored"></i>
+            <span>Git</span>
           </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-visualstudio-plain"></i>
-
-              <h5>Visual Studio</h5>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg-2-4">
-            <div class="skill-card glass-element text-center p-4">
-              <i class="devicon-vscode-plain"></i>
-
-              <h5>Vscode</h5>
-            </div>
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
+            <i class="devicon-github-original-wordmark colored"></i>
+            <span>GitHub</span>
           </div>
         </div>
       </div>
     </section>
-    <section id="contact" class="py-100">
+
+    <section id="certs">
       <div class="container">
-        <!-- Section Title -->
-        <h2 class="section-title text-center mb-5">Get In Touch</h2>
-
-        <!-- Contact Grid: left info cards + right contact form -->
-        <div class="contact-grid">
-          <!-- Contact Info Card: Email -->
-          <div class="contact-card animate__animated animate__fadeInLeft">
-            <div class="icon-circle">
-              <i class="fas fa-envelope"></i>
+        <div class="section-header" data-aos="fade-up">
+          <h2>Achieved <span>Certificates</span></h2>
+          <div class="underline"></div>
+        </div>
+        <div class="cert-container">
+          <div class="cert-box" data-aos="zoom-in-up">
+            <div class="img-holder">
+              <img src="assets/certificate/cer1.jpg" alt="Cert" />
             </div>
-            <h5>Email Me</h5>
-            <p>moamen@example.com</p>
+            <h4>Mastering TypeScript</h4>
+            <p>Verified Certification - 2025</p>
           </div>
-
-          <!-- Contact Info Card: Location -->
-          <div class="contact-card animate__animated animate__fadeInLeft">
-            <div class="icon-circle">
-              <i class="fas fa-location-dot"></i>
+          <div class="cert-box" data-aos="zoom-in-up" data-aos-delay="200">
+            <div class="img-holder">
+              <img src="assets/certificate/cer2.jpeg" alt="Cert" />
             </div>
-            <h5>Location</h5>
-            <p>Cairo, Egypt</p>
-          </div>
-
-          <!-- Contact Info Card: Phone -->
-          <div class="contact-card animate__animated animate__fadeInLeft">
-            <div class="icon-circle">
-              <i class="fas fa-phone"></i>
-            </div>
-            <h5>Phone</h5>
-            <p>+20 123 456 789</p>
-          </div>
-          <!-- Contact Form -->
-          <div class="contact-form animate__animated animate__fadeInRight">
-            <!-- Name Input -->
-            <input type="text" class="glass-input" placeholder="Your Name" />
-            <!-- Email Input -->
-            <input type="email" class="glass-input" placeholder="Your Email" />
-            <!-- Subject Input -->
-            <input type="text" class="glass-input" placeholder="Subject" />
-            <!-- Message Textarea -->
-            <textarea class="glass-input" placeholder="Your Message"></textarea>
-            <!-- Submit Button -->
-            <button class="glass-btn">
-              Send Message <i class="fas fa-paper-plane ms-2"></i>
-            </button>
+            <h4>Python Programming Language</h4>
+            <p>Verified Certification - 2025</p>
           </div>
         </div>
       </div>
     </section>
-    <button class="bg-toggle-btn" id="themeSwitcher">
-      <i class="fas fa-magic"></i>
-    </button>
 
-    <footer class="footer py-4 glass-footer mt-5">
-      <div class="container text-center">
-        <p>&copy; 2026 Maomen Abouhaty Portfolio. All rights reserved.</p>
+    <section id="contact">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Get In <span>Touch</span></h2>
+          <div class="underline"></div>
+        </div>
+        <div class="contact-wrapper">
+          <a
+            href="mailto:momenabohaty@gmail.com"
+            class="contact-info-card"
+            data-aos="fade-right"
+            style="text-decoration: none; color: inherit; display: block"
+          >
+            <i class="fas fa-envelope-open-text"></i>
+            <h3>Email Address</h3>
+            <p>momenabohaty@gmail.com</p>
+          </a>
+
+          <a
+            href="https://wa.me/201550570244"
+            target="_blank"
+            class="contact-info-card"
+            data-aos="fade-left"
+            style="text-decoration: none; color: inherit; display: block"
+          >
+            <i class="fab fa-whatsapp" style="color: #25d366"></i>
+            <h3>WhatsApp</h3>
+            <p>+20 1550570244</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-socials">
+          <a
+            href="https://github.com/MomenElsayedDev"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/moamen-elsayed-abouhaty/"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+        <p>Built with Passion and Modern Tech Stacks.</p>
+        <div class="copyright">
+          &copy; 2026 Moamen E. Abouhaty. All Rights Reserved.
+        </div>
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <style>
+      footer {
+        background: #020617;
+        padding: 80px 10% 30px;
+        color: #fff;
+        text-align: center;
+      }
+
+      .footer-socials {
+        margin-bottom: 40px;
+      }
+
+      .footer-socials a {
+        font-size: 1.8rem;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        color: #fff;
+      }
+
+      .footer-socials a:hover {
+        color: #2563eb; /* primary color */
+        transform: translateY(-5px);
+      }
+
+      footer p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+      }
+
+      footer .copyright {
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #94a3b8; /* muted text */
+        font-size: 0.9rem;
+      }
+    </style>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      /* 1. INITIALIZE AOS (ANIMATE ON SCROLL)
+       */
+      AOS.init({ duration: 1000, offset: 120, once: true });
+
+      /* 2. THEME TOGGLE LOGIC (DARK/LIGHT)
+       */
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeIcon = themeToggle.querySelector("i");
+      const currentTheme = localStorage.getItem("theme") || "light";
+
+      document.body.setAttribute("data-theme", currentTheme);
+      themeIcon.className =
+        currentTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+
+      themeToggle.addEventListener("click", () => {
+        let theme = document.body.getAttribute("data-theme");
+        if (theme === "light") {
+          document.body.setAttribute("data-theme", "dark");
+          themeIcon.className = "fas fa-sun";
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.body.setAttribute("data-theme", "light");
+          themeIcon.className = "fas fa-moon";
+          localStorage.setItem("theme", "light");
+        }
+      });
+
+      /* 3. TYPEWRITER EFFECT ENGINE
+       */
+      var TxtType = function (el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = "";
+        this.tick();
+        this.isDeleting = false;
+      };
+
+      TxtType.prototype.tick = function () {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+          this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+          this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
+
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+
+        if (this.isDeleting) {
+          delta /= 2;
+        }
+
+        if (!this.isDeleting && this.txt === fullTxt) {
+          delta = this.period;
+          this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === "") {
+          this.isDeleting = false;
+          this.loopNum++;
+          delta = 500;
+        }
+
+        setTimeout(function () {
+          that.tick();
+        }, delta);
+      };
+
+      window.onload = function () {
+        var elements = document.getElementsByClassName("typewrite");
+        for (var i = 0; i < elements.length; i++) {
+          var toRotate = elements[i].getAttribute("data-type");
+          var period = elements[i].getAttribute("data-period");
+          if (toRotate) {
+            new TxtType(elements[i], JSON.parse(toRotate), period);
+          }
+        }
+      };
+
+      const burger = document.getElementById("burger-menu");
+      const nav = document.getElementById("nav-menu");
+      const navLinks = document.querySelectorAll(".nav-links li");
+
+      burger.addEventListener("click", () => {
+        nav.classList.toggle("nav-active");
+
+        navLinks.forEach((link, index) => {
+          if (link.style.animation) {
+            link.style.animation = "";
+          } else {
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+          }
+        });
+
+        burger.classList.toggle("toggle");
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("nav-active");
+          burger.classList.remove("toggle");
+        });
+      });
+    </script>
   </body>
 </html>

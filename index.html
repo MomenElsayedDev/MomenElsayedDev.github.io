@@ -164,7 +164,8 @@
         backdrop-filter: blur(15px);
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between; /* Space between logo and links */
+        padding: 0 50px; /* Add some space from left and right edges */
         z-index: 9999;
         border-bottom: 1px solid var(--border);
         transition: var(--transition);
@@ -182,6 +183,7 @@
         display: flex;
         gap: 30px;
         align-items: center;
+        margin-left: auto; /* Push the links to the far right */
       }
 
       .nav-links a {
@@ -1020,7 +1022,8 @@
             <span>EmbededdC</span>
           </div>
           <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
-            <i class="devicon-arduino-plain-wordmark colored"></i><span>Arduino</span>
+            <i class="devicon-arduino-plain-wordmark colored"></i
+            ><span>Arduino</span>
           </div>
           <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
             <i class="devicon-raspberrypi-plain-wordmark colored"></i>
@@ -1134,6 +1137,10 @@
           >
             <i class="fab fa-linkedin-in"></i>
           </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/201550570244" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+          </a>
         </div>
         <p>Built with Passion and Modern Tech Stacks.</p>
         <div class="copyright">
@@ -1144,37 +1151,52 @@
 
     <style>
       footer {
-        background: #020617;
-        padding: 80px 10% 30px;
-        color: #fff;
+        background: linear-gradient(
+          135deg,
+          #1a1a1a,
+          #2c2c2c
+        ); /* light black gradient */
+        padding: 80px 10% 40px;
+        color: #e5e5e5;
         text-align: center;
+        font-family: "Montserrat", sans-serif;
       }
 
       .footer-socials {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
 
       .footer-socials a {
-        font-size: 1.8rem;
-        margin: 0 15px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+        font-size: 1.5rem;
+        background: #2c2c2c; /* slightly darker circle */
+        border-radius: 50%;
+        color: #60a5fa; /* blue icons */
         transition: all 0.3s ease;
-        color: #fff;
+        text-decoration: none;
       }
 
       .footer-socials a:hover {
-        color: #2563eb; /* primary color */
-        transform: translateY(-5px);
+        background: #60a5fa; /* blue background on hover */
+        color: #ffffff; /* white icon */
+        transform: translateY(-5px) scale(1.1); /* subtle pop */
       }
 
       footer p {
         font-size: 1rem;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        color: #b0b0b0; /* lighter gray for description */
       }
 
       footer .copyright {
         padding-top: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
-        color: #94a3b8; /* muted text */
+        color: #9ca3af;
         font-size: 0.9rem;
       }
     </style>

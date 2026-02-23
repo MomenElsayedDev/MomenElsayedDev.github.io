@@ -767,6 +767,55 @@
           width: 80%;
         }
       }
+
+/* ========================================
+       11. BADGES SECTION
+   ======================================== */
+      .badge-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+
+      .badge-box {
+        background: var(--bg-card);
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: var(--shadow);
+        text-align: center;
+        transition: var(--transition);
+        border: 1px solid var(--border);
+      }
+
+      .badge-box:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+      }
+
+      .badge-box .img-holder {
+        width: 100%;
+        height: 200px;
+        background: #eee;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+
+      .badge-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .badge-box h4 {
+        margin-bottom: 5px;
+      }
+
+      .badge-box p {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
     </style>
   </head>
   <body data-theme="light">
@@ -1101,7 +1150,51 @@
         </div>
       </div>
     </section>
+    <section id="badges">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <h2>Earned <span>Badges</span></h2>
+          <div class="underline"></div>
+        </div>
+        <div class="badge-container">
+          <a
+            href="https://drive.google.com/file/d/1sb70BGhq_U117yMouA5O4rqwdu7x4rra/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="badge-box"
+            data-aos="zoom-in-up"
+            data-aos-delay="200"
+          >
+            <div class="img-holder">
+              <img
+                src="assets/badges/web-development-fundamentals.png"
+                alt="Badge 1"
+              />
+            </div>
+            <h4>Web Development Fundamentals</h4>
+            <p>Verified - 2026</p>
+          </a>
 
+          <a
+            href="https://drive.google.com/file/d/1NQ-6QGzk4R1gSvn5a_W7M2ZovSvtcV8P/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="badge-box"
+            data-aos="zoom-in-up"
+            data-aos-delay="400"
+          >
+            <div class="img-holder">
+              <img
+                src="assets/badges/Foundations-in-Generative-AI.png"
+                alt="Badge 2"
+              />
+            </div>
+            <h4>Foundations in Generative AI</h4>
+            <p>Verified - 2026</p>
+          </a>
+        </div>
+      </div>
+    </section>
     <section id="contact">
       <div class="container">
         <div class="section-header" data-aos="fade-up">

@@ -482,42 +482,51 @@
              8. CERTIFICATES SECTION
            ========================================
         */
-      .cert-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 25px;
-      }
+.cert-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+  justify-content: center; /* يجعل الشهادات في المنتصف */
+  gap: 20px;
+}
 
-      .cert-box {
-        background: var(--bg-card);
-        border-radius: 15px;
-        padding: 15px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-      }
+.cert-box {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
 
-      .cert-box .img-holder {
-        width: 100%;
-        height: 250px;
-        background: #eee;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 15px;
-      }
+/* إطار الشهادة */
+.cert-box .img-holder {
+  width: 100%;
+  border-radius: 12px;
+  padding: 2px; /* إطار ذهبي رفيع */
 
-      .cert-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .cert-box h4 {
-        margin-bottom: 5px;
-      }
-      .cert-box p {
-        color: var(--primary);
-        font-weight: 600;
-        font-size: 0.8rem;
-      }
+  
+
+  background-size: 300% 300%;
+  animation: borderMove 4s linear infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* صورة الشهادة */
+.cert-box .img-holder img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* حركة الإطار */
+@keyframes borderMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
       /* ========================================
              9. CONTACT SECTION
@@ -1161,6 +1170,20 @@
           </a>
 
           <a
+            href="https://drive.google.com/file/d/1OuRKGq3Pvb-cfv3CxYgJPUj-f2XL6_WW/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cert-box"
+            data-aos="zoom-in-up"
+            data-aos-delay="400"
+          >
+            <div class="img-holder">
+              <img src="assets/certificate/cer2.jpeg" alt="Cert" />
+            </div>
+            <h4>Python Programming Basics</h4>
+            <p>Verified Certification - 2025</p>
+          </a>
+          <a
             href="https://www.credly.com/badges/8fbaa3dc-8ecb-4970-a879-1e46b53dd1fc/public_url"
             target="_blank"
             rel="noopener noreferrer"
@@ -1172,6 +1195,34 @@
               <img src="assets/certificate/cer5.jpg" alt="Cert" />
             </div>
             <h4>Web Development Fundamentals</h4>
+            <p>Verified Certification - 2026</p>
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1ftqZxYOyDy00CSHpJ0-rH5B3l--8ilR0/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cert-box"
+            data-aos="zoom-in-up"
+            data-aos-delay="400"
+          >
+            <div class="img-holder">
+              <img src="assets/certificate/Cer6.jpg" alt="Cert" />
+            </div>
+            <h4>Global Innovation Build Challenge V1</h4>
+            <p>Verified Certification - 2026</p>
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1sEMM2E1zOgrpjZMVSikThe-wYQ5ln96W/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cert-box"
+            data-aos="zoom-in-up"
+            data-aos-delay="400"
+          >
+            <div class="img-holder">
+              <img src="assets/certificate/cer7.jpg" alt="Cert" />
+            </div>
+            <h4>Frisco Hacks</h4>
             <p>Verified Certification - 2026</p>
           </a>
         </div>

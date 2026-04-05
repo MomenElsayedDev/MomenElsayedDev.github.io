@@ -837,6 +837,43 @@
         pointer-events: none;
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
+      #backToTop {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 12px;
+        display: none;
+        cursor: pointer;
+        z-index: 999;
+        font-size: 16px;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+
+        transition: all 0.3s ease;
+      }
+
+      /* 🌞 Light Mode */
+      body[data-theme="light"] #backToTop {
+        background: #015bbb;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      /* 🌙 Dark Mode */
+      body[data-theme="dark"] #backToTop {
+        background: #ffffff;
+        color: #000000;
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+      }
+
+      #backToTop:hover {
+        transform: translateY(-4px) scale(1.05);
+      }
     </style>
   </head>
   <body data-theme="light">
@@ -1469,7 +1506,9 @@
         </div>
       </div>
     </footer>
-
+    <button id="backToTop">
+      <i class="fas fa-arrow-up"></i>
+    </button>
     <style>
       footer {
         background: linear-gradient(
@@ -1632,6 +1671,22 @@
         link.addEventListener("click", () => {
           nav.classList.remove("nav-active");
           burger.classList.remove("toggle");
+        });
+      });
+      const backToTopBtn = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          backToTopBtn.style.display = "flex";
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      });
+
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
         });
       });
     </script>

@@ -874,9 +874,30 @@
       #backToTop:hover {
         transform: translateY(-4px) scale(1.05);
       }
+
+      #progressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 0%;
+        z-index: 10000;
+        transition: width 0.2s ease;
+      }
+
+      /* 🌞 Light */
+      body[data-theme="light"] #progressBar {
+        background: linear-gradient(90deg, #007bff, #00c6ff);
+      }
+
+      /* 🌙 Dark */
+      body[data-theme="dark"] #progressBar {
+        background: linear-gradient(90deg, #00c6ff, #ffffff);
+      }
     </style>
   </head>
   <body data-theme="light">
+    <div id="progressBar"></div>
     <nav>
       <div class="logo">
         <a href="#home" style="text-decoration: none; color: inherit">
@@ -1688,6 +1709,18 @@
           top: 0,
           behavior: "smooth",
         });
+      });
+      const progressBar = document.getElementById("progressBar");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+
+        progressBar.style.width = scrollPercent + "%";
       });
     </script>
   </body>

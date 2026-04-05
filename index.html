@@ -482,51 +482,55 @@
              8. CERTIFICATES SECTION
            ========================================
         */
-.cert-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
-  justify-content: center; /* يجعل الشهادات في المنتصف */
-  gap: 20px;
-}
+      .cert-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+        justify-content: center; /* يجعل الشهادات في المنتصف */
+        gap: 20px;
+      }
 
-.cert-box {
-  background: var(--bg-card);
-  border-radius: 12px;
-  padding: 6px;
-  box-shadow: var(--shadow);
-  text-align: center;
-}
+      .cert-box {
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 6px;
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
 
-/* إطار الشهادة */
-.cert-box .img-holder {
-  width: 100%;
-  border-radius: 12px;
-  padding: 2px; /* إطار ذهبي رفيع */
+      /* إطار الشهادة */
+      .cert-box .img-holder {
+        width: 100%;
+        border-radius: 12px;
+        padding: 2px; /* إطار ذهبي رفيع */
 
-  
+        background-size: 300% 300%;
+        animation: borderMove 4s linear infinite;
 
-  background-size: 300% 300%;
-  animation: borderMove 4s linear infinite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      /* صورة الشهادة */
+      .cert-box .img-holder img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+      }
 
-/* صورة الشهادة */
-.cert-box .img-holder img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-}
-
-/* حركة الإطار */
-@keyframes borderMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+      /* حركة الإطار */
+      @keyframes borderMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
       /* ========================================
              9. CONTACT SECTION
@@ -777,7 +781,7 @@
         }
       }
 
-/* ========================================
+      /* ========================================
        11. BADGES SECTION
    ======================================== */
       .badge-container {
@@ -824,6 +828,23 @@
         color: var(--primary);
         font-weight: 600;
         font-size: 0.8rem;
+      }
+      .winner-badge {
+        position: absolute;
+        top: 20px;
+        left: -35px; 
+        background: linear-gradient(45deg, #ffd700, #ffae00); 
+        color: #000;
+        font-weight: 800;
+        font-size: 11px;
+        padding: 6px 40px;
+        transform: rotate(-45deg);
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        pointer-events: none; 
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
     </style>
   </head>
@@ -917,16 +938,32 @@
           <script>
             const projects = [
               {
+                title: "Focus-For-Good-Pro",
+                desc: "To-Do-app",
+                image: "assets/projects/p9.png",
+                link: "https://github.com/MomenElsayedDev/Focus-For-Good-Pro",
+                isWinner: true,
+              },
+              {
                 title: "Prisma",
                 desc: "Precision Task OS",
                 image: "assets/projects/p1.png",
                 link: "https://github.com/MomenElsayedDev/prisma",
+                isWinner: true,
               },
               {
                 title: "GraviShift",
                 desc: "Game",
                 image: "assets/projects/p2.png",
                 link: "https://github.com/MomenElsayedDev/GraviShift",
+                isWinner: true, 
+              },
+              {
+                title: "MediVerify-Pro",
+                desc: "Medicine Management & Protection",
+                image: "assets/projects/p10.png",
+                link: "https://github.com/MomenElsayedDev/MediVerify-Pro",
+                isWinner: true,
               },
               {
                 title: "Synapse-AI",
@@ -963,18 +1000,31 @@
                 desc: "Final Master Edition",
                 image: "assets/projects/p8.png",
                 link: "https://github.com/MomenElsayedDev/Code_For_Kids_JS",
+                isWinner: true,
               },
               {
-                title: "Focus-For-Good-Pro",
-                desc: "To-Do-app",
-                image: "assets/projects/p9.png",
-                link: "https://github.com/MomenElsayedDev/Focus-For-Good-Pro",
+                title: "Nova AI Assistant",
+                desc: "A lightweight AI assistant that answers your questions instantly in the browser",
+                image: "assets/projects/p13.png",
+                link: "https://github.com/MomenElsayedDev/Nova-AI-Assistant",
               },
               {
-                title: "MediVerify-Pro",
-                desc: "Medicine Management & Protection",
-                image: "assets/projects/p10.png",
-                link: "https://github.com/MomenElsayedDev/MediVerify-Pro",
+                title: "NeuroHub",
+                desc: "Multi-Agent Orchestration OS",
+                image: "assets/projects/p12.png",
+                link: "https://github.com/MomenElsayedDev/NeuroHub",
+              },
+              {
+                title: "MILITARY GROUND RADAR SYSTEM — MK-V",
+                desc: "A real-time radar visualization system built with Arduino and Processing",
+                image: "assets/projects/p11.png",
+                link: "https://github.com/MomenElsayedDev/MILITARY_GROUND_RADAR_SYSTEM",
+              },
+              {
+                title: "SignalShift_LED",
+                desc: "SignalShift_LED is a high-responsivity audio visualizer built on the Arduino platform",
+                image: "assets/projects/p14.png",
+                link: "https://github.com/MomenElsayedDev/SignalShift_LED",
               },
               {
                 title: "comingsoon",
@@ -986,21 +1036,23 @@
 
             projects.forEach((proj, index) => {
               document.write(`
-            <div class="project-card" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="p-img-wrapper">
-                    <img src="${proj.image}" alt="${proj.title}">
-                    <div class="p-overlay">
-                        <a href="${proj.link}" target="_blank" title="Visit Website">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="p-content">
-                    <h3>${proj.title}</h3>
-                    <p>${proj.desc}</p>
+        <div class="project-card" data-aos="fade-up" data-aos-delay="${index * 100}">
+            <div class="p-img-wrapper">
+                ${proj.isWinner ? '<div class="winner-badge">WINNER</div>' : ""}
+                
+                <img src="${proj.image}" alt="${proj.title}">
+                <div class="p-overlay">
+                    <a href="${proj.link}" target="_blank" title="Visit Website">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
-          `);
+            <div class="p-content">
+                <h3>${proj.title}</h3>
+                <p>${proj.desc}</p>
+            </div>
+        </div>
+      `);
             });
           </script>
         </div>
@@ -1054,9 +1106,9 @@
             <i class="devicon-express-original colored"></i
             ><span>Express.js</span>
           </div>
-          <div class="skill-item" data-aos="flip-left" data-aos-delay="300">  
+          <div class="skill-item" data-aos="flip-left" data-aos-delay="300">
             <i class="devicon-npm-original-wordmark colored"></i>
-          <span>NPM</span>
+            <span>NPM</span>
           </div>
           <div class="skill-item" data-aos="flip-left" data-aos-delay="400">
             <i class="devicon-react-original-wordmark colored"></i>
@@ -1194,7 +1246,9 @@
             <div class="img-holder">
               <img src="assets/certificate/cer8.jpg" alt="Cert" />
             </div>
-            <h4>Embedded C: Hardware Essentials and Device Driver Development</h4>
+            <h4>
+              Embedded C: Hardware Essentials and Device Driver Development
+            </h4>
             <p>Verified Certification - 2025</p>
           </a>
           <a
@@ -1265,6 +1319,20 @@
               <img src="assets/certificate/cer10.jpg" alt="Cert" />
             </div>
             <h4>Raspberry Pi Basics</h4>
+            <p>Verified Certification - 2026</p>
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1Ir8tAyTa3YUTp_JR_FqQ3omBBtHzIDrE/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cert-box"
+            data-aos="zoom-in-up"
+            data-aos-delay="400"
+          >
+            <div class="img-holder">
+              <img src="assets/certificate/cer11.jpg" alt="Cert" />
+            </div>
+            <h4>Introduction to the Internet of Things - IoT Value</h4>
             <p>Verified Certification - 2026</p>
           </a>
         </div>
@@ -1342,7 +1410,7 @@
           >
             <i class="fab fa-whatsapp" style="color: #25d366"></i>
             <h3>WhatsApp</h3>
-            <p>+20 1550570244</p>
+            <p>+20 1091871967</p>
           </a>
         </div>
       </div>

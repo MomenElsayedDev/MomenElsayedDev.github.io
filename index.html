@@ -213,14 +213,13 @@
       }
 
       .theme-btn {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
 
-        position: fixed;
-        top: 85px;
-        right: 20px;
-        z-index: 10000;
+        position: relative;
+        top: 0;
+        right: 0;
 
         display: flex;
         align-items: center;
@@ -229,23 +228,28 @@
         border: 1px solid var(--border);
         cursor: pointer;
 
-        background-color: var(--text-main);
-        color: var(--bg-navbar);
+        background-color: transparent;
+        color: var(--text-main);
 
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: none;
         transition: all 0.3s ease;
-        padding: 0;
+        margin-left: 15px;
       }
 
       .theme-btn i {
         font-size: 1.1rem;
-        color: var(--bg-navbar);
-        margin: 0;
+        color: var(--text-main);
       }
 
       .theme-btn:hover {
         transform: scale(1.1);
-        opacity: 0.9;
+        background-color: var(--border);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       /* ========================================
@@ -1524,28 +1528,31 @@
        */
       AOS.init({ duration: 1000, offset: 120, once: true });
 
-      /* 2. THEME TOGGLE LOGIC (DARK/LIGHT)
-       */
       const themeToggle = document.getElementById("theme-toggle");
-      const themeIcon = themeToggle.querySelector("i");
+      const themeIcon = document.getElementById("theme-icon");
       const currentTheme = localStorage.getItem("theme") || "light";
 
       document.body.setAttribute("data-theme", currentTheme);
-      themeIcon.className =
-        currentTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+      updateIcon(currentTheme);
 
       themeToggle.addEventListener("click", () => {
         let theme = document.body.getAttribute("data-theme");
         if (theme === "light") {
-          document.body.setAttribute("data-theme", "dark");
-          themeIcon.className = "fas fa-sun";
-          localStorage.setItem("theme", "dark");
+          setTheme("dark", "fas fa-sun");
         } else {
-          document.body.setAttribute("data-theme", "light");
-          themeIcon.className = "fas fa-moon";
-          localStorage.setItem("theme", "light");
+          setTheme("light", "fas fa-moon");
         }
       });
+
+      function setTheme(theme, iconClass) {
+        document.body.setAttribute("data-theme", theme);
+        themeIcon.className = iconClass;
+        localStorage.setItem("theme", theme);
+      }
+
+      function updateIcon(theme) {
+        themeIcon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+      }
 
       /* 3. TYPEWRITER EFFECT ENGINE
        */

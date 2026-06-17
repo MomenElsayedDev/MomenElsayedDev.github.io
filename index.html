@@ -392,92 +392,115 @@
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+        align-items: stretch;
       }
 
+      /* Project Card */
       .project-card {
-        background-color: var(--bg-body);
-        border-radius: 8px;
+        background: var(--bg-card);
+        border-radius: 14px;
         border: 1px solid var(--border-color);
         overflow: hidden;
-        transition: var(--transition);
+        transition: all 0.35s ease;
         display: flex;
         flex-direction: column;
+        position: relative;
       }
 
+      /* Soft gradient hover overlay */
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(10, 102, 194, 0.08),
+          transparent
+        );
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 1;
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Image container */
       .project-img-container {
         position: relative;
         width: 100%;
-        height: 180px;
+        height: 190px;
         overflow: hidden;
-        background-color: #ccc;
+        background-color: var(--border-color);
       }
 
+      /* Image */
       .project-img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: var(--transition);
+        transition:
+          transform 0.5s ease,
+          filter 0.5s ease;
       }
 
+      .project-card:hover .project-img {
+        transform: scale(1.08);
+        filter: brightness(1.05);
+      }
+
+      /* Overlay */
       .project-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(10, 102, 194, 0.8);
+        inset: 0;
+        background: rgba(10, 102, 194, 0.65);
+        backdrop-filter: blur(3px);
         display: flex;
         align-items: center;
         justify-content: center;
         opacity: 0;
         transition: var(--transition);
-      }
-
-      .project-overlay i {
-        color: #ffffff;
-        font-size: 2rem;
-        transform: scale(0.8);
-        transition: var(--transition);
-      }
-
-      .project-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow);
-        border-color: var(--primary);
-      }
-
-      .project-card:hover .project-img {
-        transform: scale(1.1);
+        z-index: 2;
       }
 
       .project-card:hover .project-overlay {
         opacity: 1;
       }
 
+      .project-overlay i {
+        color: #fff;
+        font-size: 2.2rem;
+        transform: scale(0.7);
+        transition: var(--transition);
+      }
+
       .project-card:hover .project-overlay i {
         transform: scale(1);
       }
 
+      /* Details */
       .project-details {
-        padding: 16px;
-        flex-grow: 1;
+        padding: 18px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        gap: 6px;
+        position: relative;
+        z-index: 3;
       }
 
       .project-title {
-        font-size: 1.1rem;
-        font-weight: 600;
+        font-size: 1.15rem;
+        font-weight: 700;
         color: var(--text-main);
-        margin-bottom: 8px;
       }
 
       .project-desc {
         font-size: 0.9rem;
         color: var(--text-muted);
+        line-height: 1.4;
       }
 
       .certs-grid {

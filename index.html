@@ -840,6 +840,27 @@
         background: #0097a7;
         transform: translateY(-3px);
       }
+
+      .project-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .project-links a {
+        text-decoration: none;
+        color: var(--primary);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: 0.3s;
+      }
+
+      .project-links a:hover {
+        color: var(--primary-hover);
+        transform: translateY(-2px);
+      }
     </style>
   </head>
   <button id="scrollTopBtn">
@@ -898,9 +919,10 @@
             <div class="bio">
               Embedded Systems & IoT Engineer focused on designing and building
               intelligent systems that integrate hardware and software.
-              Experienced in microcontrollers, real-time operating systems
-              (RTOS), and IoT communication protocols used in smart connected
-              projects.
+              Experienced in microcontrollers such as Arduino, ESP32, and STM32,
+              as well as single-board computers like Raspberry Pi. Skilled in
+              real-time operating systems (RTOS) and IoT communication protocols
+              used in smart connected projects.
             </div>
 
             <div class="bio">
@@ -1137,53 +1159,130 @@
       </section>
       <section class="section-card reveal" id="projects">
         <h2 class="section-title">Projects</h2>
+
         <div class="projects-grid">
+          <!-- Project 1 -->
           <div class="project-card">
             <div class="project-img-container">
               <img
                 src="assets/projects/signal.jpg"
-                alt="Project 1"
+                alt="Signal Shift LED"
                 class="project-img"
               />
-              <a href="#" class="project-overlay">
+
+              <a
+                href="https://github.com/MomenElsayedDev/SignalShift_LED"
+                target="_blank"
+                class="project-overlay"
+              >
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </div>
+
             <div class="project-details">
               <h3 class="project-title">Signal Shift LED</h3>
               <p class="project-desc"></p>
+
+              <div class="project-links">
+                <a
+                  href="https://github.com/MomenElsayedDev/SignalShift_LED"
+                  target="_blank"
+                >
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
             </div>
           </div>
+
+          <!-- Project 2 -->
           <div class="project-card">
             <div class="project-img-container">
               <img
                 src="assets/projects/simon.jpg"
-                alt="Project 2"
+                alt="Simon Says"
                 class="project-img"
               />
-              <a href="#" class="project-overlay">
+
+              <a
+                href="https://github.com/MomenElsayedDev/Simon-Says"
+                target="_blank"
+                class="project-overlay"
+              >
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </div>
+
             <div class="project-details">
-              <h3 class="project-title">Simon Syas</h3>
+              <h3 class="project-title">Simon Says</h3>
               <p class="project-desc"></p>
+
+              <div class="project-links">
+                <a
+                  href="https://github.com/MomenElsayedDev/Simon-Says"
+                  target="_blank"
+                >
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
             </div>
           </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div class="project-img-container">
+              <img
+                src="assets/projects/MediVerify-Pro.jpg"
+                alt="MediVerify Pro"
+                class="project-img"
+              />
+
+              <a
+                href="https://github.com/MomenElsayedDev/MediVerify-Pro"
+                target="_blank"
+                class="project-overlay"
+              >
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+
+            <div class="project-details">
+              <h3 class="project-title">MediVerify Pro</h3>
+              <p class="project-desc"></p>
+
+              <div class="project-links">
+                <a
+                  href="https://github.com/MomenElsayedDev/MediVerify-Pro"
+                  target="_blank"
+                >
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
           <div class="project-card">
             <div class="project-img-container">
               <img
                 src="assets/projects/comingsoon.png"
-                alt="Project 3"
+                alt="Coming Soon"
                 class="project-img"
               />
+
               <a href="#" class="project-overlay">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
               </a>
             </div>
+
             <div class="project-details">
               <h3 class="project-title">Coming Soon...</h3>
               <p class="project-desc"></p>
+
+              <div class="project-links">
+                <a href="#" onclick="return false;">
+                  <i class="fa-brands fa-github"></i> Code
+                </a>
+              </div>
             </div>
           </div>
         </div>

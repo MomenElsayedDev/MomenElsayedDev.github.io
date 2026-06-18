@@ -764,17 +764,100 @@
           border-radius: 6px;
         }
       }
+
+      .badges-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .badge-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background-color: var(--bg-body);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 14px 16px;
+        transition: var(--transition);
+        cursor: pointer;
+      }
+
+      .badge-card img {
+        width: 64px;
+        height: 64px;
+        flex-shrink: 0;
+        object-fit: contain;
+        filter: grayscale(100%) opacity(70%);
+        transition: var(--transition);
+      }
+
+      .badge-card span {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--text-main);
+        line-height: 1.4;
+      }
+
+      .badge-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(10, 102, 194, 0.18);
+        border-color: var(--primary);
+      }
+
+      .badge-card:hover img {
+        filter: grayscale(0%) opacity(100%);
+      }
+      #progressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 0%;
+        background: #00bcd4;
+        z-index: 9999;
+        transition: width 0.2s ease;
+      }
+
+      #scrollTopBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 8px;
+        background: #008799;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        display: none;
+        z-index: 9999;
+        transition: 0.3s;
+      }
+
+      #scrollTopBtn:hover {
+        background: #0097a7;
+        transform: translateY(-3px);
+      }
     </style>
   </head>
+  <button id="scrollTopBtn">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
   <body>
+    <div id="progressBar"></div>
     <nav class="navbar">
       <a href="#" class="nav-logo">Moamen<span>Abouhaty</span></a>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="#">Home</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#badges">Badges</a></li>
         <li><a href="#contact">Contact</a></li>
+
         <li>
           <button
             class="theme-toggle"
@@ -786,6 +869,7 @@
           </button>
         </li>
       </ul>
+
       <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -846,7 +930,7 @@
         <h2 class="section-title">Skills</h2>
 
         <div class="skills-grid">
-          <!-- Embedded & IoT FIRST -->
+          <!-- 🔧 Embedded & Electronics -->
           <div class="skill-item">
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/embeddedc/embeddedc-original.svg"
@@ -882,7 +966,7 @@
             <span>C++</span>
           </div>
 
-          <!-- Programming Languages -->
+          <!-- 💻 Programming Languages -->
           <div class="skill-item">
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
@@ -911,7 +995,7 @@
             <span>Rust</span>
           </div>
 
-          <!-- Backend -->
+          <!-- 🚀 Backend -->
           <div class="skill-item">
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg"
@@ -926,7 +1010,7 @@
             <span>Express.js</span>
           </div>
 
-          <!-- Databases -->
+          <!-- 🗄️ Databases -->
           <div class="skill-item">
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
@@ -943,19 +1027,19 @@
 
           <div class="skill-item">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg"
-            />
-            <span>SQLite</span>
-          </div>
-
-          <div class="skill-item">
-            <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
             />
             <span>PostgreSQL</span>
           </div>
 
-          <!-- Web -->
+          <div class="skill-item">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg"
+            />
+            <span>SQLite</span>
+          </div>
+
+          <!-- 🌐 Web -->
           <div class="skill-item">
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
@@ -970,13 +1054,14 @@
             <span>CSS3</span>
           </div>
 
-          <!-- DevOps -->
           <div class="skill-item">
             <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"
             />
-            <span>Docker</span>
+            <span>Bootstrap</span>
           </div>
+
+          <!-- ⚙️ DevOps & Tools -->
           <div class="skill-item">
             <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
@@ -993,6 +1078,50 @@
 
           <div class="skill-item">
             <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+            />
+            <span>Docker</span>
+          </div>
+
+          <div class="skill-item">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg"
+            />
+            <span>Postman</span>
+          </div>
+
+          <!-- 🖥️ Systems -->
+          <div class="skill-item">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg"
+            />
+            <span>Linux</span>
+          </div>
+
+          <div class="skill-item">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg"
+            />
+            <span>Bash</span>
+          </div>
+
+          <div class="skill-item">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/archlinux/archlinux-original.svg"
+            />
+            <span>Arch Linux</span>
+          </div>
+
+          <div class="skill-item">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg"
+            />
+            <span>Windows</span>
+          </div>
+
+          <!-- 🧰 Editors -->
+          <div class="skill-item">
+            <img
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
             />
             <span>VS Code</span>
@@ -1006,7 +1135,6 @@
           </div>
         </div>
       </section>
-
       <section class="section-card reveal" id="projects">
         <h2 class="section-title">Projects</h2>
         <div class="projects-grid">
@@ -1063,138 +1191,157 @@
 
       <section class="section-card reveal" id="certifications">
         <h2 class="section-title">Certifications</h2>
+
         <div class="certs-grid">
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/CEssentials1.jpg"
-              alt="Certificate 1"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
-          </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
+          <!-- 🌐 Computer & IT Basics -->
+          <div class="cert-card">
             <img
               src="assets/certificate/UsingComputersandMobileDevices.jpg"
-              alt="Certificate 2"
               class="cert-img"
             />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/IntrotoIoT.jpg"
-              alt="Certificate 2"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
-          </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
+
+          <div class="cert-card">
             <img
               src="assets/certificate/DigitalAwareness.jpg"
-              alt="Certificate 2"
               class="cert-img"
             />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/Embedded-C.jpg"
-              alt="Certificate 3"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+
+          <div class="cert-card">
+            <img src="assets/certificate/CEssentials1.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/Git.jpg"
-              alt="Certificate 4"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+
+          <!-- 💻 Programming -->
+          <div class="cert-card">
+            <img src="assets/certificate/Python.jpeg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
+
+          <div class="cert-card">
             <img
-              src="assets/certificate/Node.js.jpg"
-              alt="Certificate 4"
+              src="assets/certificate/python_basic certificate.jpg"
               class="cert-img"
             />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
+
+          <div class="cert-card">
             <img
-              src="assets/certificate/TypeScript.jpg"
-              alt="Certificate 4"
+              src="assets/certificate/problem_solving_basic certificate.jpg"
               class="cert-img"
             />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/Arduino.jpg"
-              alt="Certificate 4"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+
+          <!-- ⚙️ Embedded & IoT -->
+          <div class="cert-card">
+            <img src="assets/certificate/IntrotoIoT.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/Raspberry-Pi.jpg"
-              alt="Certificate 4"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+
+          <div class="cert-card">
+            <img src="assets/certificate/Embedded-C.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
-            <img
-              src="assets/certificate/Python.jpeg"
-              alt="Certificate 4"
-              class="cert-img"
-            />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+
+          <div class="cert-card">
+            <img src="assets/certificate/Arduino.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
           </div>
-          <div class="cert-card" onclick="window.location.href = '#'">
+
+          <div class="cert-card">
+            <img src="assets/certificate/Raspberry-Pi.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
+          </div>
+
+          <!-- 🚀 Backend / Web -->
+          <div class="cert-card">
+            <img src="assets/certificate/Node.js.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
+          </div>
+
+          <div class="cert-card">
+            <img src="assets/certificate/TypeScript.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
+          </div>
+
+          <!-- ⚙️ Tools & Engineering -->
+          <div class="cert-card">
+            <img src="assets/certificate/Git.jpg" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
+          </div>
+
+          <div class="cert-card">
             <img
-              src="assets/projects/comingsoon.png"
-              alt="Certificate 4"
+              src="assets/certificate/software_engineer_intern certificate.jpg"
               class="cert-img"
             />
-            <div class="cert-overlay">
-              <div class="cert-title"></div>
-              <i class="fa-solid fa-link"></i>
-            </div>
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
+          </div>
+
+          <!-- 🧪 Placeholder -->
+          <div class="cert-card">
+            <img src="assets/projects/comingsoon.png" class="cert-img" />
+            <div class="cert-overlay"><i class="fa-solid fa-link"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card reveal" id="badges">
+        <h2 class="section-title">Badges & Achievements</h2>
+
+        <div class="badges-grid">
+          <div class="badge-card">
+            <img
+              src="assets/badges/c-essentials-1.png"
+              alt="C++ Essentials Badge"
+            />
+            <span>C++ Essentials</span>
+          </div>
+
+          <div class="badge-card">
+            <img src="assets/badges/digital-awareness.png" alt="Cisco Badge" />
+            <span>Digital Awareness</span>
+          </div>
+
+          <div class="badge-card">
+            <img
+              src="assets/badges/english-for-it-advice-and-time.png"
+              alt="Embedded Systems Badge"
+            />
+            <span>English For IT Advice and Time</span>
+          </div>
+          <div class="badge-card">
+            <img
+              src="assets/badges/introduction-to-iot.png"
+              alt="Embedded Systems Badge"
+            />
+            <span>Introduction To IOT</span>
+          </div>
+          <div class="badge-card">
+            <img
+              src="assets/badges/using-computer-and-mobile-devices.png"
+              alt="Embedded Systems Badge"
+            />
+            <span>Using Computer and Mobile Devices</span>
+          </div>
+          <div class="badge-card">
+            <img
+              src="assets/badges/backend-engineer-learning-path.png"
+              alt="Embedded Systems Badge"
+            />
+            <span>Backend Engineer Learning Path</span>
+          </div>
+          <div class="badge-card">
+            <img
+              src="assets/badges/web-development-fundamentals.png"
+              alt="Embedded Systems Badge"
+            />
+            <span>Web Development Fundamentals</span>
           </div>
         </div>
       </section>
@@ -1314,6 +1461,36 @@
 
       window.addEventListener("scroll", revealSections);
       window.addEventListener("load", revealSections);
+
+      window.onscroll = function () {
+        let winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+
+        let height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+
+        let scrolled = (winScroll / height) * 100;
+
+        document.getElementById("progressBar").style.width = scrolled + "%";
+      };
+
+      const btn = document.getElementById("scrollTopBtn");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          btn.style.display = "block";
+        } else {
+          btn.style.display = "none";
+        }
+      });
+
+      btn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
     </script>
   </body>
 </html>
